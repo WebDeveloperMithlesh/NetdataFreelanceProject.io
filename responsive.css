@@ -1,0 +1,153 @@
+/* CSS FOR close leftNav */
+
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  /* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 3rem;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #master {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+
+
+/* Nobile Screen Responsiveness Start Here */
+@media only screen and (min-width: 100px) and (max-width:768px) {
+    nav{
+        height: 3rem;
+        align-items: center;
+    }
+   #closebtn{
+       display: none;
+       position: absolute;
+       top: 50rem;
+       right: 5rem;
+   }
+    #searchMenu{
+       position: absolute;
+       margin: .2rem;
+       top: -.9rem;
+    }
+    .mobile-menu-button{
+        padding-top: .5rem;
+    }
+    #searchMenu{
+        margin-top: 1rem;
+        padding: .2rem;
+    }
+    #darkMenu{
+       display: none;
+    }
+    #leftNav{
+        display: none;
+        transition: all ease-in 3s;
+        background-color: black;
+        color: #f1f1f1;
+    }
+    #main{
+        width: 100vw;
+        justify-content: center;
+    }
+    #main h1{
+        text-align: left;
+        justify-self: left;
+        padding-left: -3rem;
+    }
+    #rightNav{
+        display: none;
+    }
+    #gridbox{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    #container{
+       position: relative;
+       right: 1rem;
+    }
+    #ReachBox{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+/* Nobile Screen Responsiveness Start end Here */ 
+
+@media only screen and (min-width: 768px) and (max-width: 959px){
+   
+  #logo a{
+     text-align: left;
+  }
+  #closebtn{
+    display: none;
+    position: absolute;
+    top: 50rem;
+    right: 5rem;
+}
+    #primaryMenu{
+        display: none;
+    }
+    #darkMenu{
+        display: none;
+     }
+    #rightNav{
+        display: none;
+    }
+    #leftNav{
+        display: none;
+    }
+    #main{
+        left: 3rem;
+        right: 3rem;
+        width: 100vw;
+        display: grid;
+        position: relative;
+       
+    }
+    #ReachBox{
+        display: flex;
+    
+    }
+    }

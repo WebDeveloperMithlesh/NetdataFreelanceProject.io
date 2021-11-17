@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FavIcon -->
+    <link
+      rel="shortcut icon"
+      href="./src/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- Required form plugin -->
+<link
+href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css"
+rel="stylesheet"
+/>
+<!-- Tailwind css Cdn -->
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<!-- Media Queri for Responsiveness -->
+<link rel="stylesheet" href="./responsive.css">
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/8439cce7a5.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tailwind css -->
+    <link href="/tailwind.css" rel="stylesheet" />
+    <!-- Alpine Js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <title>Netdata/docs/</title>
+  </head>
+  <body class="bg-gray-100 box-border">
+    <!-- Navbar -->
+
+    <header class="sticky top-0 z-50">
+     <!-- Navbar goes here -->
+		<nav class="text-gray-100 font-sans shadow-lg" style="background-color: #2B3136;">
+			<div class="max-w-6xl mx-auto px-1">
+        	<!-- Mobile menu button -->
+  <div class="md:hidden flex items-center px-4 py-1">
+    <button class="outline-none  mobile-menu-button">
+    <svg class=" w-6 h-6 text-gray-500 hover:text-green-500 "
+      x-show="!showMenu"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+  </div>
+				<div class="flex justify-between">
+					<div class="flex space-x-1">
+						<div class="hidden sm:flex logo">
+							<!-- Website Logo -->
+							<a href="#" class="flex items-center py-4 px-1">
+								<img src="./src/img/logo.svg" alt="Netdata Logo" class="h-8 w-32 mr-2">
+							<strong class="hover:text-blue-600">Learn</strong>
+							</a>
+						</div>
+						<!-- Primary Navbar items -->
+						<div class="hidden lg:flex items-center space-x-4">
+							<a href="#" class="py-4 px-2 text-green-500 border-green-500 font-semibold ">Docs</a>
+							<a href="#" class="py-4 px-2   hover:text-green-500 transition duration-300">Guides</a>
+							<a href="#" class="py-4 px-2   hover:text-green-500 transition duration-300">Contribute</a>
+							<a href="#" class="py-4 px-2  hover:text-green-500 transition duration-300">FAQ</a>
+						</div>
+					</div>
+					<!-- Secondary Navbar items -->
+					<div class="items-center space-x-2 justify-center">
+            <div class="hidden md:flex" id="darkMenu">
+              <button class="absolute top-5 right-44 w-12 h-5 md:w-12 md:h-6 rounded-2xl bg-white 
+              flex items-center transition duration-300
+               focus:outline-none shadow" onclick="toggleTheme()">
+               <div 
+               id="switch-toggle" class="w-8 h-4 md:h-7 relative rounded-full transition
+                duration-500 transform bg-yellow-500 translate-x-4 p-1 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+               </svg>
+               </div>
+              </button>
+            </div>
+            <!-- DARK MODE TOGGLE SWITCH END -->
+              <!-- Search Menu start Here -->
+              <div class="w-36 h-10 space-x-1 flex items-center absolute right-4 border border-gray-300 px-2 
+              py-4 rounded my-2 text-gray-300 mb-4" id="searchMenu">
+                <span class="relative"><i class="fas fa-search"></i> Search</span>
+                <input type="search" name="" id="" placeholder="Ctr+k" class="w-10 bg-black text-white rounded" >
+              </div>
+              
+               <!-- Search menu End here -->
+					</div>
+				
+				</div>
+			</div>
+			<!-- mobile menu -->
+			<div class="hidden mobile-menu bg-black">
+				<ul class="px-4 py-4">
+					<li class="active my-1"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Docs</a></li>
+					<li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Guides</a></li>
+					<li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contribute</a></li>
+					<li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">FAQ</a></li>
+				</ul>
+			</div>
+			
+		</nav>
+       <!-- Navbar Ends Here -->
+    </header>
+   
+    <!-- Content Area start -->
+
+    <div class="container">
+      <!-- Left content are start here -->
+      
+      <div class="flex">
+        <div class="flex-1 px-4 py-4 w-1/5" id="leftNav">
+
+          <div x-data="{ open: false }">
+            <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1" id="dmenu">Netdata <span class="pl-36"><i class="fas fa-chevron-right" id="favIcon"></i></span></button>
+         
+            <ul x-show="open" class="py-2 mx-auto">
+              <li class="bg-black w-100 px-2 my-1 py-1"><a href="#" class="text-white" >Home</a></li>
+              <li class="px-2 my-1 py-1 hover:bg-gray-400 "><a href="#" class="text-gray-300">Get started</a></li>
+              <!-- Drowdown within dropdown -->
+              <div x-data="{ open: false}">
+                <button @click="open = !open" class="px-2 py-1 hover:bg-gray-300">Overview <span class="pl-32"><i class="fas fa-chevron-right"></i></span></button>
+                <ul x-show="open" class="py-2 mx-auto w-100">
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Why use netdata</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">What is netdata</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Use Netdata standalone or as a part of your morning stack</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Anonymous Staticks</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Security</a></li>
+                </ul>
+<!-- 3rd Menu -->
+ <!-- Drowdown within dropdown -->
+              <div x-data="{ open: false}">
+                <button @click="open = !open" class="px-1 py-1 hover:bg-gray-300">Installation<span class="pl-32"><i class="fas fa-chevron-right"></i></span></button>
+                <ul x-show="open" class="">
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux with on-line Installer</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux with pre-built static binary</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux with .deb/.rpm package</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Run with docker</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Deploy on kubernetes</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">MacOs</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux from Git</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux from source</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Linux on offline nodes</a></li>
+                  <hr>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Update the Netdata Agent</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Reinstall the Netdata Agent</a></li>
+                  <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Uninstall Netdata</a></li>
+                </ul>
+              </div>
+  <!-- 4TH Dropdown Menu -->
+  <div x-data="{ open: false}">
+    <button @click="open = !open" class="px-1 py-1 hover:bg-gray-300">Configuration<span class="pl-28"><i class="fas fa-chevron-right"></i></span></button>
+    <ul x-show="open" class="">
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Configure the Netdata Agent</a></li>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Common configuration Changes</a></li>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Start, stop, or restart the Netdata Agent</a></li>
+     
+      <hr>
+      <p class="py-2 px-2 text-x font-bold">Security</p>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Secure your nodes</a></li>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Reverse proxy with Nginx</a></li>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Proxy with Apache</a></li>
+
+      <hr>
+      <p class="py-2 px-2 text-x font-bold">Refrence</p>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Daemon Refrence</a></li>
+      <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Configuration Refrence</a></li>
+    </ul>
+  </div>
+           <!-- 4TH DROPDOWN LINK -->
+           <div x-data="{ open: false}">
+            <button @click="open = !open" class="px-1 py-1 hover:bg-gray-300">Dashboard<span class="pl-32 px-2"><i class="fas fa-chevron-right"></i></span></button>
+            <ul x-show="open" class="px-2">
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">How the Dashboard works</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Interact with chat</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Visualization date and time controls</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Import, Export and print a snapshot </a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Reverse proxy with Nginx</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Proxy with Apache</a></li>
+        
+              <hr>
+              <p class="py-2 px-2 text-x font-bold">Customization</p>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Customized the standard dashboard</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Custom dashboard</a></li>
+              <hr>
+              <p class="py-2 px-2 font-xl font-bold">Refrence</p>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Webserver refrence</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Registry refrence</a></li>
+            </ul>
+          </div> 
+           <!-- 5TH DROPDOWN LINK -->
+           <div x-data="{ open: false}">
+            <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Data collection<span class="pl-24 px-2"><i class="fas fa-chevron-right"></i></span></button>
+            <ul x-show="open" class="px-2">
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">How Netdata's metrics collectors work</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Enable or configure a collector</a></li>
+        
+              <hr>
+            
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">System metrics</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Container metrics</a></li>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Application metrics</a></li>
+              <hr>
+              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Supported collectors list</a></li>
+           <!-- Dropdown within dropdown dropdown -->
+            <!-- 1TH DROPDOWN LINK -->
+            <div x-data="{ open: false}">
+              <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Internal<span class="pl-32 px-2"><i class="fas fa-chevron-right"></i></span></button>
+              <ul x-show="open" class="px-2">
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">proc.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">statsd.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">cgroups.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">timex.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">idlejitter.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">tc.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">checks.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">diskspace.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">freebsd.plugin</a></li>
+                <li class="py-1 px-2 hover:bg-gray-300"><a href="#">macos.plugin</a></li> 
+                </ul>
+                 <!-- Dropdown within dropdown dropdown -->
+            <!-- 1TH DROPDOWN LINK -->
+            <div x-data="{ open: false}">
+              <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">External<span class="pl-32 px-2"><i class="fas fa-chevron-right"></i></span></button>
+              <ul x-show="open" class="px-2">
+                
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">eBPF</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Application monitoring (apps.plugin)</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">cups.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">fping.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">ioping.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">freeipmi.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">nfacct.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">xenstat.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">perf.plugin</a></li>
+                <li class="px-2 py-1 hover:bg-gray-300"><a href="#">slabinfo.plugin</a></li> 
+                <!-- Dropdown within drop down down -->
+
+                <div x-data="{ open: false}">
+                  <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Go collector<span class="pl-20 px-2"><i class="fas fa-chevron-right"></i></span></button>
+                  <ul x-show="open" class="px-2">
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ActiveMQ</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Apache</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Bind9</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">CockroachDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Consul</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">CoreDNS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Couchbase</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">CouchDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">DNSdist</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Dnsmasq DNS Forwarder</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">DNS query</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Docker Engine</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Docker Hub repository</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Elasticsearch</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Energi Core Wallet </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Example modul</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Files and dirs</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Fluentd</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">FreeRADIUS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Go-ethereum </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HAProxy</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HDFS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HTTP endpoint</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ISC DHCPd</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Kubelet</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Lighttpd </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Lighttpd2</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Logstash</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">MongoDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">MySQL</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NGINX</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NGINX VTS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">phpDaemon</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PHP-FPM</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Pi-hole</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Pika</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">TCP endpoints</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PowerDNS Authoritative Server</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PowerDNS Recursor </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Prometheus endpoint</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#"> Pulsar</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">RabbitMQ</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ScaleIO</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Service discovery</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Solr</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Java Spring Boot 2 application</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Web server log (Squid)</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Supervisord</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Systemd units</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Tengine</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Traefik</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Unbound</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">vCenter Server Appliance</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">VerneMQ</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">vCenter Server</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Web server log (Apache, NGINX)</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Whois domain expiry</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Windows machine</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">x509 certificates</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ZooKeeper</a></li>
+                    
+                  </ul>
+                </div>
+                <!-- Python collectro dropdown -->
+                <div x-data="{ open: false}">
+                  <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Python collector<span class="pl-12 px-2"><i class="fas fa-chevron-right"></i></span></button>
+                  <ul x-show="open" class="px-2">
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Adaptec RAID</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Alarms</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">AM2320</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Anomaly detection with Netdata</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Apache</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Beanstalk</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ISC Bind</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">BOINC</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">CEPH</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Online change point detection with Netdata</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Chrony</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">CouchDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">DNS query RTT</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PowerDNS dnsdist</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Docker Engine</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Dovecot</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Elasticsearch</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Energi Core</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Example</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Exim</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Fail2ban</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">FreeRADIUS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Gearman</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Go applications</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HAProxy</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Hard drive temperature</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HP Smart Storage Arrays</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">HTTP endpoints</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Icecast </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">IPFS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ISC DHCP</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">LiteSpeed</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">systemd-logind</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">MegaRAID controller</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Memcached</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">MongoDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Monit</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">MySQL</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NGINX</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NGINX Plus</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NSD</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">NTP daemon</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Nvidia GPUs</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">OpenLDAP</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">OracleDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">OpenVPN</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PHP-FPM</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">TCP endpoint </a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Postfix</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PostgreSQL</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">PowerDNS</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ProxySQL</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Puppet</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">RabbitMQ</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Redis</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Web server log (Apache, NGINX)</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">RethinkDB</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">RetroShare</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Riak KV</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Linux machine sensors</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">S.M.A.R.T. attribute</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">SpigotMC</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Java Spring Boot 2 application</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Tomcat</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Tor</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Traefik</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">uWSGI</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Varnish Cache</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">1-Wire Sensors</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Web server log (Apache, NGINX, Squid)</a></li>
+                    <li class="px-4 py-1 hover:bg-gray-300"><a href="#">zscores</a></li>
+                    
+                  </ul>
+                </div>
+                </ul>
+                <!-- Nodejs Collector Dropdown -->
+                  <!-- Python collectro dropdown -->
+                  <div x-data="{ open: false}">
+                    <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Nodejs collector<span class="pl-16 px-2"><i class="fas fa-chevron-right"></i></span></button>
+                    <ul x-show="open">
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Fronius Symo</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">ISC BIND</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">SMA Sunny WebBox</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">SNMP</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Stiebel Eltron ISG</a></li>
+                    </ul>
+                  </div>
+                  <!-- Bash Collector -->
+                   <!-- Nodejs Collector Dropdown -->
+                  <!-- Python collectro dropdown -->
+                  <div x-data="{ open: false}">
+                    <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Bash collector<span class="pl-20 px-2"><i class="fas fa-chevron-right"></i></span></button>
+                    <ul x-show="open">
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Access point</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">APC UPS</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Example</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Libreswan IPSec tunnels</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">UPS/PDU </a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">OpenSIPS  </a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Linux machine sensors monitoring with Netdata</a></li>
+                    </ul>
+                  </div>
+                  <hr>
+                  <p class="px-2 py-2 font-bold uppercase">Reference</p>
+                  <ul class="hover:bg-black text-gray-500 px-2">
+                    <li class="py-1"><a href="#">Collectors refrences</a></li></ul>
+                  <!-- Alerts and Notifications Dropdown Menu -->
+                  <div x-data="{ open: false}">
+                    <button @click="open = !open" class="py-1 hover:bg-gray-300">Alerts and Notifications<span class="px-2"><i class="fas fa-chevron-right"></i></span></button>
+                    <ul x-show="open">
+                      <p class="text-x font-bold px-4 uppercase">Alerts</p>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">View active Alerts</a></li>
+                      <li class="px-4 py-1 hover:bg-gray-300"><a href="#">Configure health alarms</a></li>
+                      <hr>
+                      <p class="px-2 py-2 font-bold uppercase">Notifications</p>
+                      <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Enable alarm notifications</a></li>
+                      <!-- Support Notification Dropdown Within Alert Dropdown Menu -->
+                      <div x-data="{ open: false }">
+                        <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Supported notifications <span><i class="fas fa-chevron-right px-2"></i></span> <br><span class="text-left">Methods</span></button>
+                        <ul x-show="open" class="mx-4">
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">alerta.io</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Amazon SNS</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Custom</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Discordapp.com</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Dynatrace</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Email</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Flock</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Google Hangouts</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">IRC</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Kavenegar</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Matrix</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Messagebird</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Microsoft Teams</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Opsgenie</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">PagerDuty</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Prowl</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">PushBullet</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">PushOver</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Rocket.Chat</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Slack</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">SMS Server Tools 3</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">StackPulse</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Syslog</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Telegram</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Twilio</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Dashboard</a></li>
+                          <hr>
+                          <p class="px-2 py-2 font-bold uppercase">Reference</p>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Alert Configuration refrence</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Notification refrence</a></li>
+                        </ul>
+                      </div>
+                      <!-- Metrices Storage and managment -->
+                      <div x-data="{ open: false }">
+                        <button @click="open = !open" class="-mx-4 py-1 px-2 text-left hover:bg-gray-300">Metrics storage and <br> <span class="pl-8">managment</span> <span class="pl-20"><i class="fas fa-chevron-right"></i></span></button>
+                        <ul x-show="open">
+                          <p class="px-2 py-2 font-bold uppercase">Storage</p>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Distributed data architecture</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Change how long Netdata stores metrics</a></li>
+                          <hr>
+                          <p class="px-2 py-2 uppercase">Streaming</p>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">How metrics streaming works</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Enable streaming between nodes</a></li>
+                          <hr>
+                          <p class="py-2 px-2 uppercase">Exporting</p>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Export metrics to external time-series databases</a></li>
+                          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Enable an exporting connector</a></li>
+                          <!-- Dropdown EXPORTING CONNECTORS -->
+                          <div x-data="{ open: false }">
+                            <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Exporting Connectors<span class="pl-8"><i class="fas fa-chevron-right px-2"></i></span></button>
+                            <ul x-show="open">
+                              <li class="px-2 py-1 hover:bg-gray-300"><a href="#">AWS Kinesis Data Streams</a></li>
+                              <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Graphite</a></li>
+                              <p class="px-2 py-2 uppercase">MongoDB</p>
+                              <li class="px-2 py-1 hover:bg-gray-300"><a href="#">OpenTSDB</a></li>
+                              <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Using Netdata with Promethous</a></li>
+                              <!-- Dropdown PROMETHEOUS -->
+                              <div x-data="{ open: false}">
+                                <button @click="open = !open" class="px-1 py-2 hover:bg-gray-300">Promethous <span class="pl-20 px-2"><i class="fas fa-chevron-right"></i></span></button>
+                                  <ul x-show="open">
+                                    <li class="px-1 py-1 hover:bg-gray-300"><a href="#">Prometheus remote write</a></li>
+                                    <li class="px-1 py-1 hover:bg-gray-300"><a href="#">Google Cloud Pub/Sub Service</a></li>
+                                    <li class="px-1 py-1 hover:bg-gray-300"><a href="#">Writing metrics to TimescaleDB</a></li>
+                                    <li class="px-1 py-1 hover:bg-gray-300"><a href="#">Netdata, Prometheus, Grafana stack</a></li>
+                                  </ul>
+                              
+                              </div>
+
+                             <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Google Cloud Pub/Sub Service</a></li>
+                              <li class="px-2 hover:bg-gray-300"><a href="#">Writing metrics to TimescaleDB</a></li>
+                              <li class="px-2 hover:bg-gray-300"><a href="#">Netdata, Prometheus, Grafana stack</a></li>
+                              <hr>
+                              <p class="py-2 uppercase font-bold">Reference</p>
+                              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Database Refrence</a></li>
+                              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Database engine Refrence</a></li>
+                              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Streaming Refrence</a></li>
+                              <li class="py-1 px-2 hover:bg-gray-300"><a href="#">Refrence guide</a></li>
+                              </ul>
+                              <ul class="px-2 py-2 hover:bg-gray-300 text-green-200">
+                                <li><a href="#">cheatsheet</a></li></ul>
+                              </div>
+
+                          </ul>
+                          </div>
+                    </ul>
+                  </div>
+                 
+            </ul>
+          </div> 
+</ul>
+        </div>
+    <!-- Left 2nav -->
+    <div x-data="{ open: false }">
+    <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1">Netdata Cloud <span class="pl-24"><i class="fas fa-chevron-right"></i></span></button>
+    <ul x-show="open" class="px-2">
+      <li class="px-2 py-1 hover:bg-gray-300">Netdata Cloud docs<a href="#"></a></li>
+      <li class="px-2 py-1 hover:bg-gray-300">Get started with Netdata Cloud<a href="#"></a></li>
+      <!-- Dropdown within Dropdown -->
+    <div x-data="{ open: false }">
+      <button @click="open = !open" class="-mx-1 pl-1 py-1 hover:bg-gray-300">Connecting to Cloud<span class="pl-16"><i class="fas fa-chevron-right"></i></span></button>
+      <ul x-show="open" class="py-2 mx-2">
+        <li class="px-2 py-1 my-1 hover:bg-gray-300"><a href="#">Agent-Cloud link (ACLK)</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Connect Agent to Cloud</a></li>
+      </ul>
+      </div>
+      <li class="my-2 px-2 py-1 hover:bg-gray-300"><a href="#">Spaces</a></li>
+      <li class="my-2 px-2 py-1 hover:bg-gray-300"><a href="#">War Rooms</a></li>
+      <!-- 2nd Dropdown Within Dropdown -->
+      <div x-data="{ open: false }">
+        <button @click="open = !open" class="py-1 hover:bg-gray-300 px-2">Visualization<span class="pl-24"><i class="fas fa-chevron-right"></i></span></button>
+        <ul x-show="open" class="py-2 mx-2">
+          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Overview</a></li>
+          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Node View</a></li>
+          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Build new dashboards</a></li>
+          <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Kubernetes visualizations</a></li>
+        </ul>
+        </div>
+        <!-- 3rd Dropdown within Dropdown -->
+        <div x-data="{ open: false }">
+          <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1">Alerts and notifications<span class="pl-4 mx-2"><i class="fas fa-chevron-right"></i></span></button>
+          <ul x-show="open" class="py-1 mx-2">
+            <li class="px-2 py-1 hover:bg-gray-300"><a href="#">View active alerts</a></li>
+            <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Alert Smartboard</a></li>
+            <li class="px-2 py-1 hover:bg-gray-300"><a href="#">Alert notifications</a></li>   
+          </ul>
+          </div>
+          <!-- 4th dropdown within dropdown -->
+          <div x-data="{ open: false }">
+            <button @click="open = !open" class="hover:bg-gray-300 py-1 px-1 text-left">Troubleshooting with Netdata Cloud<span class="pl-24"><i class="fas fa-chevron-right"></i></span><br>
+              </button>
+            <ul x-show="open" class="py-2">
+              <li class="mx-2 py-1 px-4 hover:bg-gray-300"><a href="#">Metric Correlations</a></li>   
+            </ul>
+            </div>
+            <!-- 5th dropdown within dropdown -->
+            <div x-data="{ open: false }">
+              <button @click="open = !open" class="-mx-2 hover:bg-gray-300 px-1">Administratiion<span class="pl-24"><i class="fas fa-chevron-right"></i></span></button>
+              <ul x-show="open" class="my-2 py-2">
+                <li class="px-2 py-1 hover:bg-gray-400"><a href="#">Sign in with email, Google, or GitHub</a></li>   
+                <li class="px-2 py-1 hover:bg-gray-400"><a href="#">Invite your team</a></li>   
+                <li class="px-2 py-1 hover:bg-gray-400"><a href="#">Choose your Netdata Cloud theme</a></li>   
+              </ul>
+              </div>
+    </ul>  
+</div>
+<!-- 3 LEFT NAV MENU -->
+<div x-data="{ open: false }">
+  <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1">Developers<span class="pl-28"><i class="fas fa-chevron-right pl-3"></i></span></button>
+  <ul x-show="open" class="py-2">
+    <div x-data="{ open: false }">
+      <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1 ml-4">Collectors<span class="pl-28"><i class="fas fa-chevron-right pl-1"></i></span></button>
+      <ul x-show="open" class="py-1 px-2 ml-4">
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">External plugins overview</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">go.d.plugin</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">How to write a Netdata collector in Go</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">python.d.plugin</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">node.d.plugin</a></li>
+        <li class="px-2 py-1 hover:bg-gray-300"><a href="#">charts.d.plugin</a></li>
+      </ul>
+      </div>
+      <!-- 2nd Drop down down -->
+      <div x-data="{ open: false }">
+        <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1 ml-4">Libnetdata<span class="pl-28"><i class="fas fa-chevron-right"></i></span></button>
+        <ul x-show="open" class="py-2 ml-4">
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">libnetdata</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">Adaptive Re-sortable List (ARL)</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">AVL</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">BUFFER</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">clocks</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">Netdata ini config files</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">dictionary</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">ebpf</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">eval</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">json</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">locks</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">log</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">popen</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">PROCFILE</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">Netdata simple patterns</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">socket</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">statistical</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">Netdata storage number</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">threads</a></li>
+          <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">url</a></li>
+        </ul>
+        </div>
+        <!-- HTTP DROPDOWN WITHIN DROPDOWN -->
+        <div x-data="{ open: false }">
+          <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1 ml-4">HTTP API<span class="pl-28"><i class="fas fa-chevron-right pl-2"></i></span></button>
+          <ul x-show="open" class="py-2 ml-4">
+            <li class="px-2 py-1 hover:bg-gray-300 ml-4"><a href="#">API</a></li>
+            <!-- EXPORTS DROPDOWN WITHIN DROPDOWN -->
+            <div x-data="{ open: false }">
+              <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1 ml-4">Exports<span class="pl-28"><i class="fas fa-chevron-right pl-1"></i></span></button>
+              <ul x-show="open" class="py-2 ml-4">
+                <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">Exports</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">prometheus exporter</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 px-2 py-1"><a href="#">shell exporter</a></li>
+                </ul>
+                </div>
+
+                 <!-- EXPORTS DROPDOWN WITHIN DROPDOWN -->
+            <div x-data="{ open: false }">
+              <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1 ml-4">Formatters<span class="pl-20"><i class="fas fa-chevron-right pl-2"></i></span></button>
+              <ul x-show="open" class="py-2 ml-8">
+                <li class="my-1 hover:bg-gray-300 mx-2 py-1 px-2"><a href="#">Query formatting</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 py-1 px-2"><a href="#">CSV formatter</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 py-1 px-2"><a href="#">JSON formatter</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 py-1 px-2"><a href="#">SSV formatter</a></li>
+                <li class="my-1 hover:bg-gray-300 mx-2 py-1 px-2"><a href="#">Value formatter</a></li>
+                </ul>
+                </div>
+                <li class="p-1 my-1 hover:bg-gray-300"><a href="#">Netdata badges</a></li>
+                <li class="p-1 my-1 hover:bg-gray-300"><a href="#">Health API Calls</a></li>
+                <!-- MULTI DROPDOWN WITHIN DROPDOWN QUERIES -->
+
+            <div x-data="{ open: false }">
+              <button @click="open = !open" class="hover:bg-gray-300 px-2 py-1">Queries<span class="pl-28"><i class="fas fa-chevron-right pl-2"></i></span></button>
+              <ul x-show="open" class="py-2 ml-8">
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Database Queries</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Average or Mean</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">double exponential smoothing</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Incremental Sum (`incremental_sum`)</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Max</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Median</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Min</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Single (or Simple) Exponential Smoothing (`ses`)</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">standard deviation (`stddev`)</a></li>
+                <li class="my-1 hover:bg-gray-300 px-2 py-1"><a href="#">Sum</a></li>
+                </ul>
+                </div>
+            </ul>
+            
+
+          </div>
+  </ul>
+  </div>
+        </div>
+
+        <!-- Left content are end here -->
+
+        <!-- Main content start here -->
+        <main class="w-3/5" id="main">
+        <div class="flex-none px-4">
+        <article>
+          <div>
+          <h1 class="text-5xl py-7 font-bold font-sans">Netdata Docs</h1>
+          <p class="mx-4">Welcome! You’ve arrived at Netdata's documentation.</p>
+          <p class="py-4 mx-4">
+            Netdata is a monitoring, visualization, and troubleshooting
+            solution for systems, containers, <br />
+            services, and applications. Below, find links to solution- and
+            action-based docs for <br />
+            Netdata's many features and capabilities. Think of it as the
+            table of contents to becoming <br />
+            an expert in monitoring and troubleshooting.
+          </p>
+        </div>
+          <!-- Main content box start here -->
+          <div class="main-box border border-gray-700 bg-gray-800 text-gray-200 py-4 my-4 mx-4 px-4">
+            <h1 class="text-2xl px-2 font-bold py-2">Get started</h1>
+            <p class="px-2 py-2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta <br>
+              officia quis optio culpa magni alias quibusdam, corrupti maxime
+              architecto, <br> doloremque natus amet delectus nemo ea eligendi.
+              Soluta illo eum nulla.
+            </p>
+            <button type="button" class=" bg-black text-gray-200  font-bold px-4 py-2 my-2 mx-2 rounded hover:bg-green-400">Install Now</button>
+          </div>
+          <!-- Main content box end here -->
+
+          <!-- main grid box start here -->
+          <h1 class="text-2xl px-2 py-8 font-bold">Learn about Netdata's features</h1>
+          <div class="grid grid-cols-2 gap-4 p-4" id="gridbox">
+            <div class="py-2 m-2 p-2 border border-gray-400">
+              <h2 class="text-2xl font-bold mt-4 px-2">Overview</h2>
+       <!-- Upper link conten -->
+       <div class="font-semibold">
+        <ul class="py-4 px-4 underline">
+          <li class="py-2"><a href="#">What is Netdata?</a></li>
+          <li class="py-2"><a href="#">Why use Netdata?</a></li>
+          <li class="py-2"><a href="#">Pricing &nbsp;<i class="fas fa-external-link-alt"></i></a></li>
+          <li class="py-2"><a href="#">How to use Netdata with your </a></li>
+          <li class="py-2"><a href="#">existing stack</a></li>
+          </ul>
+       </div>
+       <hr>
+       <!-- Bottom link content -->
+       <div class="font-semibold">
+         <ul class="py-4 px-4 underline">
+          <li class="py-2"><a href="#">Data Privacy  &nbsp;<i class="fas fa-external-link-alt"></i></a></li>
+          <li class="py-2"><a href="#">Security design</a></li>
+          <li class="py-2"><a href="#">Anonymous statistics</a></li>
+         </ul>
+       </div>
+            </div>
+            <!-- grid box-2 -->
+            <div class="py-2 m-2 p-2 border border-gray-400">
+              <h2 class="text-2xl font-bold mt-4 px-2">Installation</h2>
+       <!-- Upper link conten -->
+       <div class="font-semibold underline">
+        <ul class="py-4 px-4 ">
+          <li class="py-2"><a href="#">What is Netdata?</a></li>
+          <li class="py-2"><a href="#">Why use Netdata?</a></li>
+          <li class="py-2"><a href="#">Pricing &nbsp;<i class="fas fa-external-link-alt"></i></a></li>
+          <li class="py-2"><a href="#">How to use Netdata with your </a></li>
+          <li class="py-2"><a href="#">existing stack</a></li>
+          </ul>
+       </div>
+       <hr>
+       <!-- Bottom link content -->
+       <div class="font-semibold underline">
+         <ul class="py-4 px-4 ">
+          <li class="py-2"><a href="#">Data Privacy  &nbsp;<i class="fas fa-external-link-alt"></i></a></li>
+          <li class="py-2"><a href="#">Security design</a></li>
+          <li class="py-2"><a href="#">Anonymous statistics</a></li>
+         </ul>
+       </div>
+            </div>
+          </div>
+          <!-- Grid box 2 start here -->
+          <div class="grid grid-cols-2 gap-4 p-4" id="gridbox">
+            <div class="py-2 m-2 p-2 border border-gray-400">
+             <h2 class="text-2xl font-bold p-4">Configuration</h2>
+             <!-- Link Top Box -->
+             <div class="underline font-semibold">
+              <ul class="py-4 px-4">
+                <li class="py-2"><a href="#">Configure the Netdata Agent</a></li>
+                <li class="py-2"><a href="#">Common configuration changes</a></li>
+                <li class="py-2"><a href="#">Start, stop, or restart the Netdata <br>Agent </a></li>
+               
+                </ul>
+            </div>
+            <hr>
+            <!-- Link Bottom box -->
+            <div class="font-semibold underline">
+              <ul class="py-4 px-4">
+                <li class="py-2"><a href="#">Secure your nodes</a></li>
+               <li class="py-2"><a href="#">Reverse proxy with Nginx</a></li>
+               <li class="py-2"><a href="#">Reverse proxy with Apache</a></li>
+              </ul>
+            </div>
+            </div>
+
+            <div  class="py-2 m-2 p-2 border border-gray-400">
+              <h2 class="text-2xl font-bold p-4">Dashboard</h2>
+              <!-- Top link box -->
+            <div class="underline font-semibold">
+              <ul class="py-4 px-4">
+                <li class="py-2"><a href="#" class="underline font-500">How the dashboard works</a></li>
+                <li class="py-2"><a href="#">Interact with charts</a></li>
+                <li class="py-2"><a href="#">Chart dimensions, contexts, <br> and families</a></li>
+                <li class="py-2"><a href="#">Select timeframes to visualize</a></li>
+                <li class="py-2"><a href="#">Import, export, and print a <br> snapshot</a></li>
+              </ul>
+            </div>
+            <hr>
+          <!-- Bottom Link box -->
+          <div class="underline font-semibold">
+            <ul class="py-4 px-4">
+              <li><a href="#">Customize the standard <br> dashboard</a></li>
+            <li class="py-2"><a href="#">Custom dashboards</a></li>
+            </ul>
+          </div>
+            </div>
+            <!-- Grid Box 2 end here -->
+
+          </div>
+          <div class="w-100"></div>
+          <!-- Grid box Row 3 Start here -->
+          <div class="grid grid-cols-2 gap-4 p-4" id="gridbox">
+            <div class="py-2 m-2 p-2 border border-gray-400">
+              <h2 class="text-2xl font-bold p-4">Data collection</h2>
+              <!-- Top link box -->
+              <div class="underline font-semibold">
+              <ul class="px-4 py-4">
+                <li class="py-2"><a href="#">How Netdata's metrics collectors <br> work</a></li>
+                <li class="py-2"><a href="#">Enable or configure a collector</a></li>
+              </ul>
+            </div>
+            <hr>
+            <!-- Bottom Link Box -->
+              <div class="underline font-semibold">
+                <ul class="px-4 py-4">
+                  <li class="py-2"><a href="#">System metrics</a></li>
+                  <li class="py-2"><a href="#">Container metrics</a></li>
+                  <li class="py-2"><a href="#">Application metrics</a></li>
+                </ul>
+            </div>
+            <hr>
+            <!-- 3BOTTOM LINK BOX -->
+            <div class="underline font-semibold">
+              <ul class="px-4 py-4">
+                <li class="py-2"><a href="#">Supported collectors list</a></li>
+              </ul>
+            </div>
+            </div>
+            <!-- BOX 5 ENDS HERE -->
+
+            <div class="py-2 m-2 p-2 border border-gray-400">
+              <h1 class="text-2xl font-bold p-4">Alerts and <br> notifications</h1>
+              <!-- Top Link box -->
+              <div class="underline font-semibold">
+                <ul class="py-4 px-4">
+                   <li class="py-2"><a href="#" class="underline font-500">View active health alarms</a></li>
+                   <li class="py-2"><a href="#">Configure health alarms</a></li>
+                </ul>
+              </div>
+              <hr>
+              <!-- Bottom Link Box -->
+              <div class="underline font-semibold">
+                <ul class="px-4 py-4">
+                  <li class="py-2"><a href="#">Enable alert notifications</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+
+          <!-- Grid Box Row 4 Start Here -->
+          <div class="grid grid-cols-2 gap-4 p-4" id="gridbox">
+            <div class="box-7 py-2 m-2 p-2 border border-gray-400">
+              <h1 class="text-2xl font-bold p-4">Metrics storage and <br> management</h1>
+              <!-- Top Link Box -->
+              <div class="underline font-semibold">
+                <ul class="py-4 px-4">
+                  <li class="py-2"><a href="#">Distributed data architecture</a></li>
+                  <li class="py-2"><a href="#">Change how long Netdata stores metrics</a></li>
+                </ul>
+              </div>
+              <hr>
+              <!-- Bottom Link Box -->
+              <div class="underline font-semibold">
+                <ul class="px-4 py-4">
+                  <li class="py-2"><a href="#">How metrics streaming works</a></li>
+                  <li class="py-2"><a href="#">Enable streaming between nodes</a></li>
+                </ul>
+                <hr>
+              </div>
+              <!-- 3 Botttom Box Link -->
+              <div class="underline font-semibold">
+                <ul class="px-4 py-4">
+                  <li class="py-2"><a href="#">Export metrics to external time-series databases</a></li>
+                  <li class="py-2"><a href="#">Enable an exporting connector</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="box-8 py-2 m-2 p-2 border border-gray-400">
+              <img src="./src/img/cheatsheet/netdata-cheatsheet.png" alt="" class="p-8">
+            </div>
+          </div>
+        </article>
+
+        
+        <h1 class="text-2xl py-8 px-2 font-bold mx-4">Contribute to Netdata</h1>
+        <p class="px-2 mx-4">To learn more about contributing to an open-source Netdata project, see <a href="#" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400">our contribute <br> doc</a> .</p>
+    <!-- Row for Bottom -->
+    <div class="container bg-gray-800 text-gray-200 my-4 mx-4 p-4 shadow" id="container">
+      <h1 class="font-bold font-7xl">Reach Out</h1>
+      <p class="py-4">If you need help after reading this doc, search our community forum for an answer. There's a <br> good chance someone else has already found a solution to the same issue.</p>
+    <div class="flex px-2 " id="ReachBox"> 
+      <div class="flex-1 py-2">
+        <h1 class="text-2xl font-bold py-2">Documentation</h1>
+       <ul class="list-disc">
+         <li class="py-2 px-2"><a href="#" class="underline font-medium font-s">Suggest an improvement</a> for this doc in our <br> forum</li>
+       </ul>
+      </div>
+      <div class="flex-1 py-2">
+        <h1 class="text-2xl font-bold py-2">Community</h1>
+        <ul class="list-disc">
+          <li>Join our <a href="#" class="underline"> community forum</a></li>
+          <li>Learn how to <a href="#" class="underline">contribute</a> to Netdata's open- <br> source</li>
+
+          <li>Submit a <a href="#" class="underline">feature request</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-right italic">Last updated on 10/7/2021</p>
+ 
+<!-- Pagination Nav -->
+<div class="my-16 flex items-end  float-right">
+<div class="pagination-nav flex  inherit border border-gray-400 rounded text-end py-3 px-5 hover:border-green-300">
+  <a href="#" class="pl-12">
+    <div class="sublevel text-right flex-1 w-50">Next</div>
+    <div class="label font-bold hover:text-green-400">Get started with Netdata <i class="fas fa-chevron-right"></i></div>
+  </a>
+</div>
+</div>
+
+      </main>
+       <!-- Left content are end here -->
+       <!-- Right Nav Menu start Here -->
+        <div class="flex-1 w-1/5 my-8" id="rightNav">
+          <ul class="px-4 py-4 border-l-2">
+            <li class="text-green-400"><a href="#" class="text-sm">Learn about Netdata's features</a></li>
+            <li class="text-gray-400 py-2"><a href="#" class="text-sm">Contribute to Netdata </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   
+    <!-- Footer start Here-->
+    <footer class="bg-gray-700" id="footer">
+      <div class="container py-4">
+        <div class="sm:inline-flex md:table lg:flex px-8 font-weight-700">
+          <div class="flex-1 text-gray-300 font-semibold">
+            <h1 class="text-xl text-white">Products</h1>
+            <ul class="py-2"lass="py-2">
+              <li class="py-2"><a href="#" class="hover:text-green-400">Agent</a></li>
+              <li><a href="#" class="hover:text-green-400">Cloud</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">Integration</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">Status</a></li>
+            </ul>
+          </div>
+          <div class="contents">
+            <div class="flex-1 text-gray-300 font-weight-800">
+              <h1 class="text-xl text-white">Resources</h1>
+            <ul class="py-2">
+              <li class="py-2"><a href="#" class="hover:text-green-400">Learn</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">Blog</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">Github</a></li>
+            </ul>
+            </div>
+            <div class="flex-1 text-gray-300 font-weight-800">
+              <h1 class="text-xl text-white">Community</h1>
+              <ul class="py-2">
+                <li class="py-2"><a href="#" class="hover:text-green-400">Overview</a></li>
+                <li class="py-2"><a href="#" class="hover:text-green-400">Forum</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex-1 text-gray-300 font-weight-800">
+            <h1 class="text-xl text-white font-weight-900">Company</h1>
+            <ul class="py-2">
+              <li class="py-2"><a href="#" class="hover:text-green-400">About</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">News</a></li>
+              <li class="py-2"><a href="#" class="hover:text-green-400">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <p class="text-center text-white py-8">Copyright &copy; 2021 Netdata, Inc.</p>
+      <!-- </div> -->
+    </footer>
+    <!-- SideNav Content -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()"><i class="fas fa-times" style="color: white;"></i></a>
+      <!-- <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a> -->
+      
+    </div>
+    
+   <!--Hamburger Menu for Small Devices-->
+  <!-- Mobile button goes here -->
+  <div class="lg:hidden sticky bottom-10 text-right px-4 -my-16" id="showButton">
+    <button class="left-menu-button bg-white w-16 h-10 rounded py-2 px-1" id="mySideNav" onclick="openNav()">
+      <i class="fas fa-bars" style="color: grey"></i>
+    </button>
+  </div>
+   <!-- Mobile Button Ends Here -->
+    <!-- Close Left Nav Button -->
+    <div class="lg:hidden sticky bottom-50 text-right px-4 -my-96" id="closebtn">
+      <button class="left-menu-button bg-white w-16 h-10 rounded py-2 px-1" id="mySideNav" onclick="closeLeft()">
+        <i class="fas fa-times" style="color: grey"></i>
+      </button>
+    </div>
+   
+    <script>
+
+   
+
+</script>
+
+
+
+
+    <!-- JavaScript -->
+    <script src="./index.js"></script>
+  </body>
+</html>
